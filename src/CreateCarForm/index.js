@@ -8,7 +8,7 @@ class CreateCar extends Component {
     this.state = {
       make: '',
       model: '',
-      color: ''
+      year: ''
     }
   }
   handleChange = (e) => {

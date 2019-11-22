@@ -53,17 +53,26 @@ class CarContainer extends Component {
 
         // We have to send JSON
         // createdCarResponse variable will store the response from the express API
-        const createdCarResponse = await fetch(process.env.REACT_APP_API_URL + '/api/v1/cars/', {
-            method: 'POST',
-            body: JSON.stringify(carFromForm),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
+        // const createdCarResponse = await fetch(process.env.REACT_APP_API_URL + '/api/v1/cars/', {
+        //     method: 'POST',
+        //     body: JSON.stringify(carFromForm),
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     }
+        // });
+
+        console.log(carFromForm);
+
+        let queryString = `?make=${carFromForm.make}&model=${carFromForm.model}&year=${carFromForm.year}`;
+        console.log(queryString);
+        const createdCarResponse = await fetch(process.env.REACT_APP_API_URL + '/api/v1/cars/search' +queryString, {
+          method: 'GET'
+      });
 
         // we have to turn the response from flask into
         // an object we can use
         const parsedResponse = await createdCarResponse.json();
+        const maintStuff = parsedResponse.data.data; // => Directly into maintenance arrayf
         console.log(parsedResponse, ' this is response')
 
         // we are emptying all the dogs that are living in state into a new array,
