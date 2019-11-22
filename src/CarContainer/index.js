@@ -16,10 +16,10 @@ class CarContainer extends Component {
       carToEdit: {
         make: '',
         model: '',
-        image: '',
         year: ''
-
-      }
+      },
+      
+      carData: []
     }
   }
 
@@ -32,10 +32,14 @@ class CarContainer extends Component {
     try {
       const cars = await fetch(process.env.REACT_APP_API_URL + '/api/v1/cars/');
       const parsedCars = await cars.json();
-      console.log(parsedCars);
+      const fullData = parsedCars.data
+      const mechData = parsedCars.data[0].data.data
+      console.log(fullData);
+      console.log(mechData);
       
       this.setState({
-        cars: parsedCars.data // array from flask
+        cars: fullData,
+        carData: mechData
       })
     
     } catch(err){

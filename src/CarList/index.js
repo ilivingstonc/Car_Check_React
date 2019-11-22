@@ -3,10 +3,23 @@ import { Card, Button, Image} from 'semantic-ui-react';
 
 function CarList(props){
 
+  // const carsData = props.carData.map((info, e) => {
+  //   return (
+  //     <div key={e}>
+  //       <h5>{info.desc}</h5>
+  //       <h5>{info.due_mileage}</h5>
+  //     </div>
+  //   )
+    
+    
+  
+  //   })
+
+
   const cars = props.cars.map((car) => {
     return (
         <Card key={car.id}>
-        <Image src={car.image} wrapped ui={false} />
+        {/* <Image src={car.image} wrapped ui={false} /> */}
           <Card.Content>
             <Card.Header>{car.make}</Card.Header>
             <Card.Description>{car.model}</Card.Description>
@@ -20,9 +33,11 @@ function CarList(props){
         )
   })
 
+
   return (
       <Card.Group>
         { cars }
+        {/* { carsData } */}
       </Card.Group>
     )
 }
