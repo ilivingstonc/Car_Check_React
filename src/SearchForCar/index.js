@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Form, Button, Label, Segment } from 'semantic-ui-react';
 
-class CreateCar extends Component {
+class SearchForCar extends Component {
   constructor(){
     super();
 
@@ -24,7 +24,7 @@ class CreateCar extends Component {
           <Form.Input type='text' name='make' value={this.state.make} onChange={this.handleChange}/>
           <Label>Model:</Label>
           <Form.Input type='text' name='model' value={this.state.model} onChange={this.handleChange}/>
-          <Label>Image:</Label>
+          <Label>Year:</Label>
           <Form.Input type='text' name='year' value={this.state.year} onChange={this.handleChange}/>
           <Button type='Submit'>Submit</Button>
         </Form>
@@ -33,4 +33,4 @@ class CreateCar extends Component {
   }
 }
 
-export default CreateCar;
+export default SearchForCar;

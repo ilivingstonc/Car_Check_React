@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import CarList from '../CarList'
-import CreateCarForm from '../CreateCarForm'
+import SearchForCar from '../SearchForCar'
 import EditCarModal from '../EditCarModal'
+import CarSearchResults from '../CarSearchResults'
 // import FindCarForm from '../FindCarForm'
 import {Grid} from 'semantic-ui-react'
 
@@ -12,22 +13,26 @@ class CarContainer extends Component {
 
     this.state = {
       cars: [],
+      carData: [],
       showEditModal: false,
       carToEdit: {
         make: '',
         model: '',
         year: ''
       },
-      
-      carData: []
+      carFromSearch: {
+        make: '',
+        model: '',
+        year: ''
+      }
     }
   }
 
   componentDidMount(){
-    this.getCars();
+    // this.getCars()
   }
 
-  getCars = async () => {
+getCars = async () => {
 
     try {
       const cars = await fetch(process.env.REACT_APP_API_URL + '/api/v1/cars/');
@@ -47,7 +52,7 @@ class CarContainer extends Component {
     }
   }
 
-  addCar = async (e, carFromForm) => {
+addCar = async (e, carFromForm) => {
     e.preventDefault();
     try {
 
@@ -65,22 +70,26 @@ class CarContainer extends Component {
 
         let queryString = `?make=${carFromForm.make}&model=${carFromForm.model}&year=${carFromForm.year}`;
         console.log(queryString);
-        const createdCarResponse = await fetch(process.env.REACT_APP_API_URL + '/api/v1/cars/search' +queryString, {
+        const searchedCarResponse = await fetch(process.env.REACT_APP_API_URL + '/api/v1/cars/search' +queryString, {
           method: 'GET'
       });
 
-        // we have to turn the response from flask into
-        // an object we can use
-        const parsedResponse = await createdCarResponse.json();
-        const maintStuff = parsedResponse.data.data; // => Directly into maintenance arrayf
+        const parsedResponse = await searchedCarResponse.json();
         console.log(parsedResponse, ' this is response')
+        const carResponse = parsedResponse.data
+        const maintResponse = parsedResponse.data.data.data
+        console.log(carResponse, 'this is car');
+        console.log(maintResponse, 'this is maint');
 
-        // we are emptying all the dogs that are living in state into a new array,
-        // and then adding the dog we just created to the end of it
-        // the new dog which is called parsedResponse.data
 
         this.setState({
-            cars: [...this.state.cars, parsedResponse.data]
+            carFromSearch: {
+              ...carResponse
+            },
+            carData: maintResponse
+            // cars: [...this.state.cars, carResponse],
+            // cars: [...this.state.cars, parsedResponse.data]
+            // carData: maintResponse
         })
 
 
@@ -88,8 +97,7 @@ class CarContainer extends Component {
         console.log('error')
         console.log(err)
     }
-    // request address will start with 'http://localhost:8000'
-    // becuase after we create it, we want to add it to the dogs array
+  
 }
 
 
@@ -170,14 +178,14 @@ closeAndEdit = async (e) => {
   
   render(){
     return (
-      <Grid columns={2} divided textAlign='center' style={{ height: '100%' }} verticalAlign='top' stackable>
+      <Grid columns={2} textAlign='center' verticalAlign='top'>
           <Grid.Row>
             <Grid.Column>
-              <CarList cars={this.state.cars} deleteCar={this.deleteCar} openEditModal={this.openEditModal}/>
+              <SearchForCar addCar={this.addCar}/>
             </Grid.Column>
             <Grid.Column>
-             <CreateCarForm addCar={this.addCar}/>
-             {/* <FindCarForm findCarr={this.findCar}/> */}
+            <CarSearchResults carData={this.state.carData} carFromSearch={this.state.carFromSearch} />
+            <CarList cars={this.state.cars} carData={this.state.carData} deleteCar={this.deleteCar} openEditModal={this.openEditModal}/>
              <EditCarModal open={this.state.showEditModal} carToEdit={this.state.carToEdit} handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit}/>
             </Grid.Column>
           </Grid.Row>
