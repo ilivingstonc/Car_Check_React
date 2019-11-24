@@ -1,7 +1,10 @@
 import React from 'react';
 import { Modal, Form, Button, Label } from 'semantic-ui-react';
 
-
+//edit
+//creating edit form. passes up edit props with handlechange on submit.
+//make, model, year
+// -------removed image label and form.input between Model and Year to match model in CarContainer-----------------
 const EditCarModal = (props) => {
     return (
 
@@ -16,10 +19,6 @@ const EditCarModal = (props) => {
                     Model: 
                 </Label>
                     <Form.Input type="text" name="model" value={props.carToEdit.model} onChange={props.handleEditChange} />
-                <Label>
-                    Image: 
-                </Label>
-                    <Form.Input type="text" name="image" value={props.carToEdit.image} onChange={props.handleEditChange} />
                 <Label>
                     Year: 
                 </Label>
