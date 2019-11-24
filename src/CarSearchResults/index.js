@@ -1,5 +1,6 @@
 import React from 'react';
 
+//carsData=info from cardata array, pulling out repair desc and car mileage to be returned below
 function CarSearchResults (props) {
   
 

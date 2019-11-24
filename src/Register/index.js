@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import { Form, Label, Button } from 'semantic-ui-react'
+import './style.css'
 
 class Register extends Component {
     constructor() {
@@ -48,14 +49,16 @@ class Register extends Component {
 
 render() {
     return (
-      <Form onSubmit={this.handleSubmit}>
-        <h4>Register New User</h4>
-        <Label>Email</Label>
-        <Form.Input type="email" name="email" onChange={this.handleChange} required />
-        <Label>Password</Label>
-        <Form.Input type="password" name="password" onChange={this.handleChange} required />
-        <Button type="submit" color="green">Sign Up</Button>
-      </Form>
+    <div style={{"margin": "30px"}}>
+        <Form onSubmit={this.handleSubmit}>
+            <h4>Register New User</h4>
+            <Label size='big'>Email</Label>
+            <Form.Input size='big' type="email" name="email" onChange={this.handleChange} required />
+            <Label size='big'>Password</Label>
+            <Form.Input size='big' type="password" name="password" onChange={this.handleChange} required />
+            <Button size='big' type="submit" color="black">Sign Up</Button>
+        </Form>
+    </div>
     )
   }
 }

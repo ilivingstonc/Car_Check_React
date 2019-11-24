@@ -1,22 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Header, List } from 'semantic-ui-react';
+import './style.css'
 
 const HeaderComponent = () => {
   return (
-    <Header>
-      <List horizontal floated="right">
+    <Header style={{"background-color": "white", "margin": "30px", "padding": "25px", "border-style": "inset"}}>
+      <List horizontal style={{display: 'grid-column-auto'}} >
         <List.Item>
-          <Link to="/">Register</Link>
+          <Link className="navHeader" to="/">Register</Link>
         </List.Item>
         <List.Item>
-          <Link to="/login">Login</Link>
+          <Link className="navHeader" to="/login">Login</Link>
         </List.Item>
         <List.Item>
-          <Link to="/cars">Cars</Link>
+          <Link className="navHeader" to="/cars">Cars</Link>
         </List.Item>  
       </List>
     </Header>
+    
   )
 }
 
