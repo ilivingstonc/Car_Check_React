@@ -3,6 +3,7 @@ import Register from './Register';
 import Login from './Login';
 import './App.css';
 import CarContainer from './CarContainer';
+import CarSearchResults from './CarSearchResults';
 import HeaderComponent from './HeaderComponent';
 import { Route, Switch } from 'react-router-dom';
 
@@ -23,6 +24,7 @@ function App() {
         <Route exact path="/" component={ Register } />
         <Route exact path="/login" component={ Login } />
         <Route exact path="/cars" component={ CarContainer } />
+        <Route exact path="/search" component={ CarSearchResults }/>
         <Route component={ My404 } />
       </Switch>
     </main>

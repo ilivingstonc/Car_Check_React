@@ -5,7 +5,9 @@ import EditCarModal from '../EditCarModal'
 import CarSearchResults from '../CarSearchResults'
 // import FindCarForm from '../FindCarForm'
 import {Grid} from 'semantic-ui-react'
+import './style.css'
 
+//setting up CarContainer
 
 class CarContainer extends Component {
   constructor(props){
@@ -28,10 +30,11 @@ class CarContainer extends Component {
     }
   }
 
+  //commented out because was getting all the cars
   componentDidMount(){
     // this.getCars()
   }
-
+//get cars retrieves cardata array, pull in full data and mech data, sets to state
 getCars = async () => {
 
     try {
@@ -51,7 +54,7 @@ getCars = async () => {
       console.log(err)
     }
   }
-
+//
 addCar = async (e, carFromForm) => {
     e.preventDefault();
     try {
@@ -101,7 +104,7 @@ addCar = async (e, carFromForm) => {
 }
 
 
-
+//
 deleteCar = async (id) => {
    console.log(id);
    const deleteCarResponse = await fetch(process.env.REACT_APP_API_URL + '/api/v1/cars/' + id, {
@@ -128,6 +131,7 @@ openEditModal = (carFromList) => {
       }
     })
 }
+
 
 handleEditChange = (e) => {
     e.preventDefault();
@@ -177,19 +181,20 @@ closeAndEdit = async (e) => {
 
   
   render(){
+    
     return (
-      <Grid columns={2} textAlign='center' verticalAlign='top'>
-          <Grid.Row>
-            <Grid.Column>
-              <SearchForCar addCar={this.addCar}/>
-            </Grid.Column>
-            <Grid.Column>
-            <CarSearchResults carData={this.state.carData} carFromSearch={this.state.carFromSearch} />
-            <CarList cars={this.state.cars} carData={this.state.carData} deleteCar={this.deleteCar} openEditModal={this.openEditModal}/>
-             <EditCarModal open={this.state.showEditModal} carToEdit={this.state.carToEdit} handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit}/>
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
+      <div>
+        <SearchForCar addCar={this.addCar}/>
+      </div>
+ 
+        
+      
+          
+            
+            // <CarSearchResults carData={this.state.carData} carFromSearch={this.state.carFromSearch} />
+            // <CarList cars={this.state.cars} carData={this.state.carData} deleteCar={this.deleteCar} openEditModal={this.openEditModal}/>
+            //  <EditCarModal open={this.state.showEditModal} carToEdit={this.state.carToEdit} handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit}/> 
+       
       )
   }
 
