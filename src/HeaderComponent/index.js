@@ -5,8 +5,8 @@ import './style.css'
 
 const HeaderComponent = () => {
   return (
-    <Header style={{"background-color": "white", "margin": "30px", "padding": "25px", "border-style": "inset"}}>
-      <List horizontal style={{display: 'grid-column-auto'}} >
+    <Header style={{"backgroundColor": "white", "margin": "30px", "padding": "25px", "borderStyle": "inset"}}>
+      <List horizontal>
         <List.Item>
           <Link className="navHeader" to="/">Register</Link>
         </List.Item>
