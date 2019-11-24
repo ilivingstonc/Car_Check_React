@@ -5,7 +5,7 @@ import { Header, List } from 'semantic-ui-react';
 const HeaderComponent = () => {
   return (
     <Header>
-      <List style={{display: 'grid-column-auto'}} >
+      <List horizontal floated="right">
         <List.Item>
           <Link to="/">Register</Link>
         </List.Item>

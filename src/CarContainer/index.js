@@ -178,14 +178,14 @@ closeAndEdit = async (e) => {
   
   render(){
     return (
-      <Grid columns={2} textAlign='center' verticalAlign='top'>
+      <Grid columns={2} textAlign='center'>
           <Grid.Row>
             <Grid.Column>
               <SearchForCar addCar={this.addCar}/>
             </Grid.Column>
             <Grid.Column>
             <CarSearchResults carData={this.state.carData} carFromSearch={this.state.carFromSearch} />
-            <CarList cars={this.state.cars} carData={this.state.carData} deleteCar={this.deleteCar} openEditModal={this.openEditModal}/>
+            <CarList deleteCar={this.deleteCar} openEditModal={this.openEditModal}/>
              <EditCarModal open={this.state.showEditModal} carToEdit={this.state.carToEdit} handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit}/>
             </Grid.Column>
           </Grid.Row>

@@ -17,7 +17,7 @@ class SearchForCar extends Component {
   
   render(){
     return (
-      <Segment>
+      <Segment style={{"backgroundColor":"lightBlue"}}>
         <h4>Search Car</h4>
         <Form onSubmit={(e) => this.props.addCar(e, this.state)}>
           <Label>Make:</Label>
