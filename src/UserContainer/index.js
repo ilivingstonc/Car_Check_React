@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import EditCarModal from '../EditCarModal'
-
+import CarList from '../CarList'
 import {Grid} from 'semantic-ui-react'
 
 
@@ -22,7 +22,29 @@ class UserContainer extends Component {
       }
     }
 
-  
+     //commented out because was getting all the cars
+  componentDidMount(){
+    this.getCars()
+  }
+    getCars = async () => {
+
+      try {
+        const cars = await fetch(process.env.REACT_APP_API_URL + '/api/v1/savedcars/');
+        const parsedCars = await cars.json();
+        const fullData = parsedCars.data
+        const mechData = parsedCars.data[0].data.data
+        console.log(fullData);
+        console.log(mechData);
+        
+        this.setState({
+          cars: fullData,
+          carData: mechData
+        })
+      
+      } catch(err){
+        console.log(err)
+      }
+    }
   
   deleteCar = async (id) => {
     console.log(id);
@@ -99,7 +121,7 @@ class UserContainer extends Component {
       
       return (
         <Grid.Column>
-            <UserContainer deleteCar={this.deleteCar} openEditModal={this.openEditModal}/>
+            <CarList deleteCar={this.deleteCar} openEditModal={this.openEditModal} cars={this.state.cars}/>
             <EditCarModal open={this.state.showEditModal} carToEdit={this.state.carToEdit} handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit}/>
           </Grid.Column>
       )
