@@ -30,31 +30,31 @@ class HomeContainer extends Component {
     }
   }
 
-  //commented out because was getting all the cars
-  componentDidMount(){
-    // this.getCars()
-  }
-//get cars retrieves cardata array, pull in full data and mech data, sets to state
-getCars = async () => {
+//   //commented out because was getting all the cars
+//   componentDidMount(){
+//     // this.getCars()
+//   }
+// //get cars retrieves cardata array, pull in full data and mech data, sets to state
+// getCars = async () => {
 
-    try {
-      const cars = await fetch(process.env.REACT_APP_API_URL + '/api/v1/cars/');
-      const parsedCars = await cars.json();
-      const fullData = parsedCars.data
-      const mechData = parsedCars.data[0].data.data
-      console.log(fullData);
-      console.log(mechData);
+//     try {
+//       const cars = await fetch(process.env.REACT_APP_API_URL + '/api/v1/cars/');
+//       const parsedCars = await cars.json();
+//       const fullData = parsedCars.data
+//       const mechData = parsedCars.data[0].data.data
+//       console.log(fullData);
+//       console.log(mechData);
       
-      this.setState({
-        cars: fullData,
-        carData: mechData
-      })
+//       this.setState({
+//         cars: fullData,
+//         carData: mechData
+//       })
     
-    } catch(err){
-      console.log(err)
-    }
-  }
-//
+//     } catch(err){
+//       console.log(err)
+//     }
+//   }
+// //
 
 saveCar = async (e) => {
   e.preventDefault();
