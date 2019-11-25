@@ -4,9 +4,9 @@ body {
     background-repeat:repeat-x;
     background-attachment:fixed;
     background-position: left top;
-    position:absolute;
+    /* position:absolute; */
     height: 95vh;
     width: auto;
-    margin:0;
+    margin:0; 
   
 }
