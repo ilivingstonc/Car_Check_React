@@ -2,9 +2,9 @@ import React from 'react';
 import Register from './Register';
 import Login from './Login';
 import './App.css';
-import CarContainer from './CarContainer';
-import CarSearchResults from './CarSearchResults';
-import HeaderComponent from './HeaderComponent';
+import HomeContainer from './HomeContainer';
+import UserContainer from './UserContainer';
+import LoginHeader from './LoginHeader';
 import { Route, Switch } from 'react-router-dom';
 
 
@@ -19,12 +19,12 @@ const My404 = () => {
 function App() {
   return (
     <main>
-      <HeaderComponent />
+      <LoginHeader />
       <Switch>
         <Route exact path="/" component={ Register } />
         <Route exact path="/login" component={ Login } />
-        <Route exact path="/cars" component={ CarContainer } />
-        <Route exact path="/search" component={ CarSearchResults }/>
+        <Route exact path="/cars" component={ HomeContainer } />
+        <Route exact path="/savedcars" component={ UserContainer } />
         <Route component={ My404 } />
       </Switch>
     </main>

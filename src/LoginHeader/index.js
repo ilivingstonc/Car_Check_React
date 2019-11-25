@@ -3,23 +3,20 @@ import { Link } from 'react-router-dom';
 import { Header, List } from 'semantic-ui-react';
 import './style.css'
 
-const HeaderComponent = () => {
+const LoginHeader = () => {
   return (
-    <Header style={{"backgroundColor": "white", "margin": "30px", "padding": "25px", "borderStyle": "inset"}}>
+    <Header style={{"backgroundColor": "white", "margin": "30px", "padding": "25px", "borderStyle": "inset", "width": "30%"}}>
       <List horizontal>
         <List.Item>
           <Link className="navHeader" to="/">Register</Link>
         </List.Item>
         <List.Item>
           <Link className="navHeader" to="/login">Login</Link>
-        </List.Item>
-        <List.Item>
-          <Link className="navHeader" to="/cars">Cars</Link>
-        </List.Item>  
+        </List.Item> 
       </List>
     </Header>
     
   )
 }
 
-export default HeaderComponent;
+export default LoginHeader;

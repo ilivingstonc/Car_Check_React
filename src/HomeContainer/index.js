@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
-import CarList from '../CarList'
-import SearchForCar from '../SearchForCar'
-import EditCarModal from '../EditCarModal'
+import CarSearchForm from '../CarSearchForm'
 import CarSearchResults from '../CarSearchResults'
-// import FindCarForm from '../FindCarForm'
 import {Grid} from 'semantic-ui-react'
 import './style.css'
 
-//setting up CarContainer
+//setting up HomeContainer
 
-class CarContainer extends Component {
+class HomeContainer extends Component {
   constructor(props){
     super(props);
 
@@ -27,7 +24,8 @@ class CarContainer extends Component {
         make: '',
         model: '',
         year: '',
-        data: []
+        data: [],
+        owner: ''
       }
     }
   }
@@ -132,76 +130,76 @@ addCar = async (e, carFromForm) => {
 }
 
 
-//
-deleteCar = async (id) => {
-   console.log(id);
-   const deleteCarResponse = await fetch(process.env.REACT_APP_API_URL + '/api/v1/cars/' + id, {
-     method: 'DELETE'
-   });
 
-   const deleteCarParsed = await deleteCarResponse.json();
-   console.log(deleteCarParsed)
+// deleteCar = async (id) => {
+//    console.log(id);
+//    const deleteCarResponse = await fetch(process.env.REACT_APP_API_URL + '/api/v1/cars/' + id, {
+//      method: 'DELETE'
+//    });
 
-   this.setState ({
-     cars: this.state.cars.filter((car) => car.id !== id )
+//    const deleteCarParsed = await deleteCarResponse.json();
+//    console.log(deleteCarParsed)
 
-   })
+//    this.setState ({
+//      cars: this.state.cars.filter((car) => car.id !== id )
+
+//    })
 
 
-}
+// }
 
-openEditModal = (carFromList) => {
+// openEditModal = (carFromList) => {
   
-    this.setState ({
-      showEditModal: true,
-      carToEdit: {
-        ...carFromList
-      }
-    })
-}
+//     this.setState ({
+//       showEditModal: true,
+//       carToEdit: {
+//         ...carFromList
+//       }
+//     })
+// }
 
 
-handleEditChange = (e) => {
-    e.preventDefault();
-    this.setState ({
-      carToEdit: {
-      ...this.state.carToEdit,
-      [e.currentTarget.name]: e.currentTarget.value
-      }
-  })
-}
+// handleEditChange = (e) => {
+//     e.preventDefault();
+//     this.setState ({
+//       carToEdit: {
+//       ...this.state.carToEdit,
+//       [e.currentTarget.name]: e.currentTarget.value
+//       }
+//   })
+// }
 
-closeAndEdit = async (e) => {
+// closeAndEdit = async (e) => {
    
-  try {
-      const editResponse = await fetch(process.env.REACT_APP_API_URL + '/api/v1/cars/' +  this.state.carToEdit.id, {
-       method: "PUT",
-       body: JSON.stringify(this.state.carToEdit),
-       headers: {
-         'Content-Type': 'application/json'
-       }
-    })
-      const editResponseParsed = await editResponse.json();
-      console.log('editResponseParsed: ', editResponseParsed);
+//   try {
+//       const editResponse = await fetch(process.env.REACT_APP_API_URL + '/api/v1/cars/' +  this.state.carToEdit.id, {
+//        method: "PUT",
+//        body: JSON.stringify(this.state.carToEdit),
+//        headers: {
+//          'Content-Type': 'application/json'
+//        }
+//     })
+//       const editResponseParsed = await editResponse.json();
+//       console.log('editResponseParsed: ', editResponseParsed);
 
-      const newCarArrayWithEdit = this.state.cars.map((car) => {
-          if (car.id === editResponseParsed.data.id) {
-               car = editResponseParsed.data
-        }
+//       const newCarArrayWithEdit = this.state.cars.map((car) => {
+//           if (car.id === editResponseParsed.data.id) {
+//                car = editResponseParsed.data
+//         }
         
-        return car;
-    }) 
+//         return car;
+//     }) 
 
-      this.setState ({
-        cars: newCarArrayWithEdit,
-        showEditModal: false 
-      })
+//       this.setState ({
+//         cars: newCarArrayWithEdit,
+//         showEditModal: false 
+//       })
 
-  }  catch (err) {
-    console.log (err);
-  }
+//   }  catch (err) {
+//     console.log (err);
+//   }
 
-}
+// }
 
 
 
@@ -212,22 +210,20 @@ closeAndEdit = async (e) => {
     
     return (
       <Grid columns={2} textAlign='center'>
-          <Grid.Row>
-            <Grid.Column>
-              <SearchForCar addCar={this.addCar} saveCar={this.saveCar}/>
-            </Grid.Column>
-            <Grid.Column>
+        <Grid.Row>
+          <Grid.Column>
+            <CarSearchForm addCar={this.addCar} saveCar={this.saveCar}/>
+          </Grid.Column>
+          <Grid.Column>
             <CarSearchResults carData={this.state.carData} carFromSearch={this.state.carFromSearch} />
-            <CarList deleteCar={this.deleteCar} openEditModal={this.openEditModal}/>
-             <EditCarModal open={this.state.showEditModal} carToEdit={this.state.carToEdit} handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit}/>
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
       )
   }
 
 
 }
 
-export default CarContainer
+export default HomeContainer
 
