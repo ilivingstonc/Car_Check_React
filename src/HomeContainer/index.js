@@ -24,8 +24,7 @@ class HomeContainer extends Component {
         make: '',
         model: '',
         year: '',
-        data: [],
-        owner: ''
+        data: []
       }
     }
   }
@@ -63,6 +62,7 @@ saveCar = async (e) => {
     const savedCarResponse = await fetch(process.env.REACT_APP_API_URL + '/api/v1/savedcars/', {
       method: 'POST',
       body: JSON.stringify(this.state.carFromSearch),
+      credentials: 'include',
       headers: {
           'Content-Type': 'application/json'
       }
@@ -71,11 +71,8 @@ saveCar = async (e) => {
 
     const parsedResponse = await savedCarResponse.json();
 
-    console.log(parsedResponse)
+    console.log(parsedResponse, 'this is what i am posting')
 
-    this.setState({
-      savedCars: [...this.state.savedCars, parsedResponse.data]
-  })
 
   } catch (err) {
     console.log(err)
@@ -90,10 +87,6 @@ saveCar = async (e) => {
 addCar = async (e, carFromForm) => {
     e.preventDefault();
     try {
-
-        // We have to send JSON
-        // createdCarResponse variable will store the response from the express API
-       
 
         console.log(carFromForm);
 
@@ -116,14 +109,11 @@ addCar = async (e, carFromForm) => {
               ...carResponse
             },
             carData: maintResponse
-            // cars: [...this.state.cars, carResponse],
-            // cars: [...this.state.cars, parsedResponse.data]
-            // carData: maintResponse
+          
         })
 
 
     } catch (err) {
-        console.log('error')
         console.log(err)
     }
   

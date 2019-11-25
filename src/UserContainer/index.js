@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import EditCarModal from '../EditCarModal'
+import CarList from '../CarList'
 import {Grid} from 'semantic-ui-react'
 
 
-class CarList extends Component {
+class UserContainer extends Component {
 
     constructor(props){
       super(props);
@@ -98,7 +99,7 @@ class CarList extends Component {
       
       return (
         <Grid.Column>
-            <CarList deleteCar={this.deleteCar} openEditModal={this.openEditModal}/>
+             <CarList deleteCar={this.deleteCar} openEditModal={this.openEditModal}/>
              <EditCarModal open={this.state.showEditModal} carToEdit={this.state.carToEdit} handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit}/>
           </Grid.Column>
       )
@@ -108,4 +109,4 @@ class CarList extends Component {
 }
 
 
-export default CarList
+export default UserContainer
