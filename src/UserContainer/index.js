@@ -22,11 +22,33 @@ class UserContainer extends Component {
       }
     }
 
-  
+     //commented out because was getting all the cars
+  componentDidMount(){
+    this.getCars()
+  }
+    getCars = async () => {
+
+      try {
+        const cars = await fetch(process.env.REACT_APP_API_URL + '/api/v1/savedcars/');
+        const parsedCars = await cars.json();
+        const fullData = parsedCars.data
+        const mechData = parsedCars.data[0].data.data
+        console.log(fullData);
+        console.log(mechData);
+        
+        this.setState({
+          cars: fullData,
+          carData: mechData
+        })
+      
+      } catch(err){
+        console.log(err)
+      }
+    }
   
   deleteCar = async (id) => {
     console.log(id);
-    const deleteCarResponse = await fetch(process.env.REACT_APP_API_URL + '/api/v1/cars/' + id, {
+    const deleteCarResponse = await fetch(process.env.REACT_APP_API_URL + '/api/v1/savedcars/' + id, {
       method: 'DELETE'
     });
 
@@ -41,7 +63,7 @@ class UserContainer extends Component {
 
   }
 
-    openEditModal = (carFromList) => {
+  openEditModal = (carFromList) => {
   
       this.setState ({
         showEditModal: true,
@@ -99,8 +121,8 @@ class UserContainer extends Component {
       
       return (
         <Grid.Column>
-             <CarList deleteCar={this.deleteCar} openEditModal={this.openEditModal}/>
-             <EditCarModal open={this.state.showEditModal} carToEdit={this.state.carToEdit} handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit}/>
+            <CarList deleteCar={this.deleteCar} openEditModal={this.openEditModal} cars={this.state.cars}/>
+            <EditCarModal open={this.state.showEditModal} carToEdit={this.state.carToEdit} handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit}/>
           </Grid.Column>
       )
   }
