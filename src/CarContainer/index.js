@@ -16,6 +16,7 @@ class CarContainer extends Component {
     this.state = {
       cars: [],
       carData: [],
+      savedCars: [],
       showEditModal: false,
       carToEdit: {
         make: '',
@@ -25,7 +26,8 @@ class CarContainer extends Component {
       carFromSearch: {
         make: '',
         model: '',
-        year: ''
+        year: '',
+        data: []
       }
     }
   }
@@ -55,19 +57,45 @@ getCars = async () => {
     }
   }
 //
+
+saveCar = async (e) => {
+  e.preventDefault();
+  try {
+
+    const savedCarResponse = await fetch(process.env.REACT_APP_API_URL + '/api/v1/savedcars/', {
+      method: 'POST',
+      body: JSON.stringify(this.state.carFromSearch),
+      headers: {
+          'Content-Type': 'application/json'
+      }
+    
+    });
+
+    const parsedResponse = await savedCarResponse.json();
+
+    console.log(parsedResponse)
+
+    this.setState({
+      savedCars: [...this.state.savedCars, parsedResponse.data]
+  })
+
+  } catch (err) {
+    console.log(err)
+  }
+ 
+ 
+
+};
+
+
+
 addCar = async (e, carFromForm) => {
     e.preventDefault();
     try {
 
         // We have to send JSON
         // createdCarResponse variable will store the response from the express API
-        // const createdCarResponse = await fetch(process.env.REACT_APP_API_URL + '/api/v1/cars/', {
-        //     method: 'POST',
-        //     body: JSON.stringify(carFromForm),
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     }
-        // });
+       
 
         console.log(carFromForm);
 
@@ -186,7 +214,7 @@ closeAndEdit = async (e) => {
       <Grid columns={2} textAlign='center'>
           <Grid.Row>
             <Grid.Column>
-              <SearchForCar addCar={this.addCar}/>
+              <SearchForCar addCar={this.addCar} saveCar={this.saveCar}/>
             </Grid.Column>
             <Grid.Column>
             <CarSearchResults carData={this.state.carData} carFromSearch={this.state.carFromSearch} />
