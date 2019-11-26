@@ -24,8 +24,7 @@ class HomeContainer extends Component {
         make: '',
         model: '',
         year: '',
-        data: [],
-        owner: ''
+        data: []
       }
     }
   }
