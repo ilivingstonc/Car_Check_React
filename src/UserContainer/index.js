@@ -15,6 +15,7 @@ class UserContainer extends Component {
         savedCars: [],
         showEditModal: false,
         carToEdit: {
+          event_id: '',
           make: '',
           model: '',
           year: ''
@@ -48,7 +49,7 @@ class UserContainer extends Component {
   
   deleteCar = async (id) => {
     console.log(id);
-    const deleteCarResponse = await fetch(process.env.REACT_APP_API_URL + '/api/v1/savedcars/' + id, {
+    const deleteCarResponse = await fetch(process.env.REACT_APP_API_URL + '/api/v1/savedcars/' + id + '/', {
       method: 'DELETE'
     });
 
@@ -56,7 +57,7 @@ class UserContainer extends Component {
     console.log(deleteCarParsed)
 
     this.setState ({
-      cars: this.state.cars.filter((car) => car.id !== id )
+      cars: this.state.cars.filter((car) => car.event_id !== id )
 
     })
 
@@ -64,7 +65,8 @@ class UserContainer extends Component {
   }
 
   openEditModal = (carFromList) => {
-  
+    
+      console.log(carFromList)
       this.setState ({
         showEditModal: true,
         carToEdit: {
@@ -85,37 +87,44 @@ class UserContainer extends Component {
   }
   
   closeAndEdit = async (e) => {
-     
+    e.preventDefault();
     try {
-        const editResponse = await fetch(process.env.REACT_APP_API_URL + '/api/v1/cars/' +  this.state.carToEdit.id, {
-         method: "PUT",
-         body: JSON.stringify(this.state.carToEdit),
-         headers: {
-           'Content-Type': 'application/json'
-         }
-      })
-        const editResponseParsed = await editResponse.json();
-        console.log('editResponseParsed: ', editResponseParsed);
-  
-        const newCarArrayWithEdit = this.state.cars.map((car) => {
-            if (car.id === editResponseParsed.data.id) {
-                 car = editResponseParsed.data
-          }
-          
-          return car;
-      }) 
-  
-        this.setState ({
-          cars: newCarArrayWithEdit,
-          showEditModal: false 
-        })
-  
-    }  catch (err) {
-      console.log (err);
+      console.log('Sending this to server:', this.state.carToEdit);
+      const editCarUrl = `${process.env.REACT_APP_API_URL}/api/v1/savedcars/${this.state.carToEdit.event_id}/`;
+      const editResponse = await fetch(editCarUrl, {
+        method: 'PUT',
+        credentials: 'include',
+        body: JSON.stringify(this.state.carToEdit),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      
+      });
+
+      const editResponseParsed = await editResponse.json();
+      console.log(editResponseParsed, ' parsed edit')
+
+      const newCarArrayWithEdit = this.state.cars.map((car) => {
+
+        if(car.event_id === editResponseParsed.data.event_id){
+          car = editResponseParsed.data
+        }
+
+        return car
+      });
+
+      this.setState({
+        showEditModal: false,
+        cars: newCarArrayWithEdit
+      });
+
+
+    } catch(err){
+      console.log(err)
     }
-  
+
+
   }
-  
   
     render(){
       
