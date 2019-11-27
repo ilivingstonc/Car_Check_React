@@ -58,6 +58,7 @@ render() {
             <Form.Input size='big' type="password" name="password" onChange={this.handleChange} required />
             <Button size='big' type="submit" color="black">Sign Up</Button>
         </Form>
+        <Button href='/'>Login Existing User</Button>
     </div>
     )
   }

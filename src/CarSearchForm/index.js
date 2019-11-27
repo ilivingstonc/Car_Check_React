@@ -26,12 +26,12 @@ class SearchForCar extends Component {
           <Form.Input size='big' type='text' name='model' value={this.state.model} onChange={this.handleChange}/>
           <Label size='big'>Year:</Label>
           <Form.Input size='big' type='text' name='year' value={this.state.year} onChange={this.handleChange}/>
-          <Button size='big' type='Submit' color='red'><Icon name="wrench" />SUBMIT 
-          </Button>   
-          <Button positive type="submit" onClick={(e) => this.props.saveCar(e)}>Save Car</Button>
+          <Button size='big' type='Submit' color='red'><Icon name="wrench" />SUBMIT </Button>   
+          <Button positive type="submit" onClick={(e) => this.props.saveCar(e)}>Add Car</Button>
+          <Button href='/savedcars' color="black" positive>My Cars</Button>
+          <Button href='/' color="red" positive>Log Out</Button>
         </Form>
-
-
+        
       </div>
       )
   }

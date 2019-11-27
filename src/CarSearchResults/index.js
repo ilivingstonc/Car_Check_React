@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form } from 'semantic-ui-react';
+import { Card, Button } from 'semantic-ui-react';
 
 //carsData=info from cardata array, pulling out repair desc and car mileage to be returned below
 function CarSearchResults (props) {
@@ -49,14 +49,16 @@ function CarSearchResults (props) {
         )
       })    
 
-    
+
+   
+      
         return (
-            <Form>
+            
+            <Card>
             <h1>{props.carFromSearch.make} {props.carFromSearch.model} {props.carFromSearch.year}</h1> 
             {carsData}
-            </Form>
+            </Card>
           )
-    
 
 }
 

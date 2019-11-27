@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import EditCarModal from '../EditCarModal'
 import CarList from '../CarList'
-import {Grid} from 'semantic-ui-react'
+import {Grid, Button} from 'semantic-ui-react'
 
 
 class UserContainer extends Component {
@@ -132,6 +132,8 @@ class UserContainer extends Component {
         <Grid.Column>
             <CarList deleteCar={this.deleteCar} openEditModal={this.openEditModal} cars={this.state.cars}/>
             <EditCarModal open={this.state.showEditModal} carToEdit={this.state.carToEdit} handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit}/>
+            <Button href='/cars' color="red" positive>Back to Search</Button>
+            <Button href='/' color="red" positive>Log Out</Button>
           </Grid.Column>
       )
   }

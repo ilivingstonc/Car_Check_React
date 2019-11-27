@@ -21,8 +21,8 @@ function App() {
     <main>
       <LoginHeader />
       <Switch>
-        <Route exact path="/" component={ Register } />
-        <Route exact path="/login" component={ Login } />
+        <Route exact path="/" component={ Login } />
+        <Route exact path="/register" component={ Register } />
         <Route exact path="/cars" component={ HomeContainer } />
         <Route exact path="/savedcars" component={ UserContainer } />
         <Route component={ My404 } />

@@ -58,9 +58,10 @@ class Login extends Component {
           <Form.Input size='big' type="email" name="email" onChange={this.handleChange} required />
           <Label size='big'>Password</Label>
           <Form.Input size='big' type="password" name="password" onChange={this.handleChange} required />
-          <Button size='big' type="submit" color="black">Login</Button>
+          <Button exact path='/cars' size='big' type="submit" color="green">Login</Button>
           { this.state.errorMsg ? <Message negative>{this.state.errorMsg}</Message> : null }
         </Form>
+        <Button exact path='/register' size='medium' type="submit" color="black">Register New User</Button>
       </div>
     )
   }
