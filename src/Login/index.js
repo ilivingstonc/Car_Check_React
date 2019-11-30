@@ -52,7 +52,7 @@ class Login extends Component {
   render() {
     return (
       <div style={{"margin": "30px"}}>
-        <Form onSubmit={this.handleSubmit}>
+        <Form onSubmit={this.handleSubmit} style={{"width": "25%"}}>
           <h4>Sign In</h4>
           <Label size='big'>Email</Label>
           <Form.Input size='big' type="email" name="email" onChange={this.handleChange} required />
