@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css?family=Bangers|Montserrat+Subrayada|Righteous|Rubik+Mono+One&display=swap');
+
+
+h1 {
+    font-family: 'Bangers', cursive;
+    font-weight: 40;
+    font-size: 250%;
+
+}
+
+h6 {
+    font-size: 85%;
+    font-family: 'Rubik Mono One', sans-serif;
+    font-weight: 40;
+}
+
+p {
+    font-size: 75%;
+    font-family: 'Rubik Mono One', sans-serif;
+    font-weight: 40;
+    background-color: rgb(255, 243, 176);
+
+}

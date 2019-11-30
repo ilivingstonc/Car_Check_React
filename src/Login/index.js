@@ -61,7 +61,7 @@ class Login extends Component {
           <Button exact path='/cars' size='big' type="submit" color="green">Login</Button>
           { this.state.errorMsg ? <Message negative>{this.state.errorMsg}</Message> : null }
         </Form>
-        <Button exact path='/register' size='medium' type="submit" color="black">Register New User</Button>
+        <Button href='/register' size='medium' type="submit" color="black">Register New User</Button>
       </div>
     )
   }

@@ -1,11 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Header, List } from 'semantic-ui-react';
 import './style.css'
 
 const LoginHeader = () => {
   return (
-    <Header style={{"color": "#324875", "font-size": "250%"}}>Car Check</Header>
+    <h1 className="LoginHeader">Car Check<i style={{"width": "100%"}} class="hospital icon"></i></h1>
+      
     
   )
 }

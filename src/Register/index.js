@@ -56,9 +56,9 @@ render() {
             <Form.Input size='big' type="email" name="email" onChange={this.handleChange} required />
             <Label size='big'>Password</Label>
             <Form.Input size='big' type="password" name="password" onChange={this.handleChange} required />
-            <Button size='big' type="submit" color="black">Sign Up</Button>
+            <Button size='big' type="submit" color="green">Sign Up</Button>
         </Form>
-        <Button href='/'>Login Existing User</Button>
+        <Button href='/' size='medium' type="submit" color="black">Login Existing User</Button>
     </div>
     )
   }

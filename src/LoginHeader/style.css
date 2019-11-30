@@ -1,4 +1,13 @@
-.navHeader {
-   font-size: 250%;
-   padding: 25px;
+@import url('https://fonts.googleapis.com/css?family=Bangers|Montserrat+Subrayada|Righteous|Rubik+Mono+One&display=swap');
+
+
+h1 {
+   font-family: 'Rubik Mono One', sans-serif;
+}
+.LoginHeader {
+   width: 30%;
+   font-family: 'Rubik Mono One', sans-serif;
+   background-color: rgb(4, 212, 4);
+   text-align: center;
+   font-size: 300%;
 }
