@@ -1,12 +1,43 @@
+.homeContainer {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: A B;
+}
+
+.searchForm {
+  grid-area: A;
+}
+
+.searchResults {
+  grid-area: B;
+}
+
 body {
-    background: #DCDCDC;
-    background-image: url('img/pexels-photo-221201.jpeg');
-    background-repeat:repeat-x;
-    background-attachment:fixed;
-    background-position: left top;
-    /* position:absolute; */
-    height: 95vh;
+  background: #dcdcdc;
+  background-image: url('img/pexels-photo-221201.jpeg');
+  background-repeat: repeat-x;
+  background-attachment: fixed;
+  background-position: left top;
+  /* position:absolute; */
+  height: 95vh;
+  width: auto;
+  margin: 0;
+}
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (orientation: portrait) {
+  .homeContainer {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      A
+      B;
+  }
+
+  body {
+    height: 500vh;
     width: auto;
-    margin:0; 
-  
+    margin: 0;
+  }
 }

@@ -1,0 +1,9 @@
+.registerContainer {
+    display: grid;
+    justify-items: center;
+}
+
+.registerForm {
+    text-align: center;
+    border: 2px solid blue;
+}

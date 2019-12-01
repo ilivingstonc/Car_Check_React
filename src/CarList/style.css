@@ -1,0 +1,13 @@
+.carContainer {
+  display: grid;
+  grid-auto-columns: 1fr;
+  text-align: center;
+  justify-content: center;
+}
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (orientation: portrait) {
+  .carContainer {
+    display: grid;
+    grid-auto-rows: 1fr;
+  }
+}
